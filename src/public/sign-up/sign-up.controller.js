@@ -8,27 +8,31 @@ SignUpController.$inject = ['MenuService'];
 function SignUpController(MenuService) {
   console.log("SignUpController");
   var signUpCtrl = this;
-  /*
-  signUpCtrl.user.firstname= "Ruben";
-  signUpCtrl.user.lastname= "Leis";
-  signUpCtrl.user.email= "rubenleis@gmail.com";
-  signUpCtrl.user.phone= "615051949";
-  signUpCtrl.user.favorite = "A1";*/
-  
     
   signUpCtrl.submit = function () {
     console.log("submit");
-    console.log(signUpCtrl.user.favorite);
-    console.log(MenuService);
-    signUpCtrl.item = MenuService.getMenuItem(signUpCtrl.user.favorite);
-    console.log(signUpCtrl.item);  
-    /*
-    console.log(signUpCtrl.user.firstname);
-    console.log(signUpCtrl.user.lastname);
-    console.log(signUpCtrl.user.email);
-    console.log(signUpCtrl.user.phone);
-    console.log(signUpCtrl.user.favorite);
-    */
+      
+    //console.log(signUpCtrl.user.favorite);
+    //console.log(MenuService);
+    var promise = MenuService.getMenuItem(signUpCtrl.user.favorite);
+    signUpCtrl.successMsg = null;  
+    signUpCtrl.error = null;
+    signUpCtrl.item = null;
+  
+    promise.then(function (response) {
+      //console.log(response);
+      if (response) {
+        signUpCtrl.item = response;
+        signUpCtrl.successMsg = "Your information has been saved"
+      } else {
+        signUpCtrl.error = "No such menu number exists";
+      }
+    })
+    .catch(function (error) {
+      console.log("Something went terribly wrong.");
+    });
+
+    
   };
 }
 

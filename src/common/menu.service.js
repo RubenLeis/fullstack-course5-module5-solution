@@ -29,7 +29,19 @@ function MenuService($http, ApiPath) {
     
   service.getMenuItem = function (shortName) {
     return $http.get(ApiPath + '/menu_items/' + shortName + '.json').then(function (response) {
+      console.log("response.data");
+      console.log(response.data);
       return response.data;
+    },
+    function errorCallback(response){ 
+       // do stuff with your 500/404 etc errors... 
+      console.log("callbackerror");
+      console.log(response);
+    }
+    )
+    .catch(function (error) {
+      console.log("error")
+      return error;
     });
   };
 
