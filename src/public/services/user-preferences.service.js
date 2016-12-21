@@ -21,7 +21,7 @@ function UserPreferencesService() {
     _preferences = new Object();  
     _preferences.menuItem = menuItem;
     _preferences.user = user;
-    console.log(_preferences);
+    //console.log(_preferences);
   };
 
 
