@@ -33,7 +33,14 @@ function routeConfig ($stateProvider) {
     //
     .state('public.myinfo', {
       url: '/myinfo',
-      templateUrl: 'src/public/my-info/my-info.html'
+      templateUrl: 'src/public/my-info/my-info.html',
+      controller: 'MyInfoController',
+      controllerAs: 'myInfoCtrl',
+      resolve: {
+        preferences: ['UserPreferencesService', function(UserPreferencesService) {
+            return UserPreferencesService.getPreferences();
+        }]
+      }
     })
     .state('public.signup', {
       url: '/signup',

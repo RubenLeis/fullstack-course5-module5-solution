@@ -1,2 +1,12 @@
 <h1>MyInfo</h1>
 
+<div class="container">
+   <div ng-if="myInfoCtrl.preferences">
+       <menu-item 
+          menu-item=" myInfoCtrl.preferences.menuItem">
+       </menu-item> 
+   </div>
+    <div ng-if="!myInfoCtrl.preferences" class="signup-error text-center">
+        Not Signed Up Yet
+    </div>   
+</div>
